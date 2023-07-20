@@ -1,0 +1,57 @@
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="m-1 p-1 bg-primary">
+    <div class="row text-white">
+        <div class="col-7">
+            <h4>Products</h4>
+        </div>
+        <div class="col-5 text-right">
+            
+        </div>
+    </div>
+</div>
+
+<div class="m-1 p-1">
+    <div class="row">
+        <div class="col-3">
+            @await Component.InvokeAsync("CategoryMenu")
+        </div>
+        <div class="col-9">
+            <div class="row">    
+                <div class="col-3">
+                    @await Component.InvokeAsync("ProductSummary", new {isApproved=true})
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    @await Component.InvokeAsync("ProductSummary", new {isApproved=false})
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                        <th >#</th>
+                        <th >Name</th>
+                        <th >Price</th>
+                        <th ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.ProductId</th>
+                                <td>@item.ProductName</td>
+                                <td>@item.Price</td>
+                                <td></td>
+                            </tr>   
+                        }
+                    </tbody>
+                </table>
+</div>
